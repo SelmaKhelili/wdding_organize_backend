@@ -1,0 +1,30 @@
+{
+    "about": "LILIANE SAVEURS est une entreprise spécialisée dans la livraison de plateaux-repas et l’organisation d’événements pour particuliers et professionnels, basée à Alger (Dar el Beida).",
+    "pricingDetails": [
+      {
+        "title": "Basic Package",
+        "price": "5,000 DZD/person",
+        "details": "Includes: 2 appetizers, 1 main course, dessert, non-alcoholic beverages"
+      },
+      {
+        "title": "Standard Package",
+        "price": "8,000 DZD/person",
+        "details": "Includes: 3 appetizers, 2 main courses, side dishes, dessert, service staff"
+      },
+      {
+        "title": "Premium Package",
+        "price": "12,000 DZD/person",
+        "details": "Includes: 5 appetizers, 3 main courses, side dishes, dessert, coffee/tea service, enhanced service staff"
+      }
+    ],
+    "additionalCosts": {
+      "travelFee": "5,000 DZD",
+      "extraStaff": "2,000 DZD each"
+    },
+    "photos": [
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/f9/d1/83/nos-reduits.jpg?w=900&h=500&s=1",
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/f9/d1/83/nos-reduits.jpg?w=900&h=500&s=1",
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/f9/d1/83/nos-reduits.jpg?w=900&h=500&s=1"
+    ]
+  }
+  

@@ -1,0 +1,42 @@
+name: zefeffete
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+environment:
+  sdk: ^3.5.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+  google_fonts: ^6.2.1
+  shared_preferences: ^2.3.3
+  smooth_page_indicator: ^1.2.0+3
+  sqflite: ^2.4.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/profile.jpg
+    - assets/images/vendor1.jpg
+    - assets/images/vendor2.jpg
+    - assets/images/vendor3.jpg
+    - assets/images/venue1.jpg
+    - assets/images/venue2.jpg
+    - assets/images/venue3.jpg
+    - assets/images/startingPage1.jpg
+    - assets/images/startingPage2.jpg
+    - assets/images/startingPage3.jpg
+    - assets/wilayas.json
+    - assets/vendor_data.json
+    - assets/photographers.json
+    - assets/venues.json
+    - assets/images/flowers1.png
+    - assets/images/flowers2.png
+    - assets/images/aliance.png
+    - assets/images/profilepic.png
+    - assets/images/algeria_flag.jpg

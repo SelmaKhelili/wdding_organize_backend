@@ -1,0 +1,63 @@
+[
+    {
+      "id": 1,
+      "name": "Noces d'Algérie",
+      "phone": "0788774422",
+      "location": "Chetaïbi, Annaba",
+      "imageUrl": "https://media.istockphoto.com/id/1196172395/fr/photo/dans-le-studio-de-photo-avec-l%C3%A9quipement-professionnel-portrait-du-photographe-c%C3%A9l%C3%A8bre-tenant.jpg?s=612x612&w=0&k=20&c=mohLOjErh-GyVABv5uVyn7pgkqllfLj9Xyz_WBDAUAI=",
+      "about": "We specialize in capturing your special moments with elegance and creativity.",
+      "pricingDetails": [
+        {
+          "title": "Wedding Package",
+          "price": "1200 USD",
+          "details": "Includes full-day coverage and an album."
+        },
+        {
+          "title": "Engagement Package",
+          "price": "800 USD",
+          "details": "Includes a 3-hour photoshoot and edited photos."
+        }
+      ],
+      "additionalCosts": {
+        "travelFee": "50 USD",
+        "extraStaff": "100 USD per person"
+      },
+      "photos": [
+        "https://media.istockphoto.com/id/1196172395/fr/photo/dans-le-studio-de-photo-avec-l%C3%A9quipement-professionnel-portrait-du-photographe-c%C3%A9l%C3%A8bre-tenant.jpg?s=612x612&w=0&k=20&c=mohLOjErh-GyVABv5uVyn7pgkqllfLj9Xyz_WBDAUAI=",
+        "https://media.istockphoto.com/id/1196172395/fr/photo/dans-le-studio-de-photo-avec-l%C3%A9quipement-professionnel-portrait-du-photographe-c%C3%A9l%C3%A8bre-tenant.jpg?s=612x612&w=0&k=20&c=mohLOjErh-GyVABv5uVyn7pgkqllfLj9Xyz_WBDAUAI="
+      ],
+      "rating": {
+        "averageRating": 4.5,
+        "totalReviews": 1500,
+        "starPercentages": [74, 15, 3, 3, 5]
+      }
+    },
+    {
+      "id": 2,
+      "name": "Studio Lumière",
+      "phone": "0663445566",
+      "location": "Algiers, Algeria",
+      "imageUrl": "https://media.istockphoto.com/id/1196172395/fr/photo/dans-le-studio-de-photo-avec-l%C3%A9quipement-professionnel-portrait-du-photographe-c%C3%A9l%C3%A8bre-tenant.jpg?s=612x612&w=0&k=20&c=mohLOjErh-GyVABv5uVyn7pgkqllfLj9Xyz_WBDAUAI=",
+      "about": "Studio Lumière specializes in stunning studio portraits and professional photography services.",
+      "pricingDetails": [
+        {
+          "title": "Studio Portraits",
+          "price": "500 USD",
+          "details": "Includes a 2-hour studio session and 10 edited photos."
+        }
+      ],
+      "additionalCosts": {
+        "travelFee": "N/A",
+        "extraStaff": "50 USD per assistant"
+      },
+      "photos": [
+        "https://media.istockphoto.com/id/1196172395/fr/photo/dans-le-studio-de-photo-avec-l%C3%A9quipement-professionnel-portrait-du-photographe-c%C3%A9l%C3%A8bre-tenant.jpg?s=612x612&w=0&k=20&c=mohLOjErh-GyVABv5uVyn7pgkqllfLj9Xyz_WBDAUAI="
+      ],
+      "rating": {
+        "averageRating": 4.0,
+        "totalReviews": 500,
+        "starPercentages": [60, 25, 10, 3, 2]
+      }
+    }
+  ]
+  

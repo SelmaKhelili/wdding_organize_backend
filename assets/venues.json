@@ -1,0 +1,39 @@
+[
+    {
+      "id": 1,
+      "name": "Assinate",
+      "phone": "0688996644",
+      "location": "Tichy, Bejaia",
+      "imageUrl": "https://www.stuckonyoufavours.co.za/cdn/shop/articles/MilkandHoneyPhotography-78.jpg?v=1653994203&width=1100",
+      "rating": {
+        "stars": 4,
+        "halfStar": true,
+        "reviews": 584
+      }
+    },
+    {
+      "id": 2,
+      "name": "Crystal Venue",
+      "phone": "0701122334",
+      "location": "Algiers, Algeria",
+      "imageUrl": "https://www.stuckonyoufavours.co.za/cdn/shop/articles/MilkandHoneyPhotography-78.jpg?v=1653994203&width=1100",
+      "rating": {
+        "stars": 5,
+        "halfStar": false,
+        "reviews": 920
+      }
+    },
+    {
+      "id": 3,
+      "name": "Dream Hall",
+      "phone": "0556677889",
+      "location": "Oran, Algeria",
+      "imageUrl": "https://www.stuckonyoufavours.co.za/cdn/shop/articles/MilkandHoneyPhotography-78.jpg?v=1653994203&width=1100",
+      "rating": {
+        "stars": 3,
+        "halfStar": true,
+        "reviews": 320
+      }
+    }
+  ]
+  
