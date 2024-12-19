@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zefeffete/data/datasources/account_ds.dart';
 import 'package:zefeffete/data/repositories/account_rep_impl.dart';
+import 'package:zefeffete/data_to_be_deleted/users.dart';
 import 'package:zefeffete/domain/usecases/login_toaccount_usecase.dart';
 import 'package:zefeffete/presentation/controllers/login_to_account_controller.dart';
 import 'package:zefeffete/presentation/views/screens/auth/signup.dart';
-import 'package:zefeffete/presentation/views/screens/auth/changepassword.dart';
 import 'package:zefeffete/presentation/views/screens/profile/profile.dart';
+import 'package:zefeffete/presentation/views/screens/auth/changepassword.dart';
 
 class Login extends StatefulWidget {
   static const String pageroute = '/login';
@@ -19,24 +21,23 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final TextEditingController _loginemailController = TextEditingController();
-  final TextEditingController _loginpasswordController = TextEditingController();
+  final TextEditingController _loginpasswordController =
+  TextEditingController();
   final GlobalKey<FormState> _loginformkey = GlobalKey<FormState>();
   bool isObscurelogin = true;
   bool _isLoading = false;
-
   late final LoginController _loginController;
-
-  @override
+  
+@override
   void initState() {
     super.initState();
-
     // Initialize the controller with the use case
     final accountRepository = AccountRepositoryImpl(AccountDataSource());
     final loginUseCase = LoginUseCase(accountRepository);
     _loginController = LoginController(loginUseCase);
   }
 
-  // Perform login validation
+ // Perform login validation
   void _login() async {
     if (_loginformkey.currentState?.validate() ?? false) {
       setState(() {
@@ -61,7 +62,6 @@ class _LoginState extends State<Login> {
       }
     }
   }
-
   // Function to show an error dialog
   void _showErrorDialog(String message) {
     showDialog(
@@ -86,54 +86,67 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Stack(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 30, top: 90),
-                  child: Text(
-                    'Welcome!',
-                    style: GoogleFonts.jomhuria(
-                      fontSize: 80,
-                      fontWeight: FontWeight.w500,
-                      color: const Color.fromARGB(255, 234, 186, 210),
-                    ),
+        body: SingleChildScrollView(
+      child: Stack(
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 30, top: 90),
+                child: Text(
+                  'Welcome!',
+                  style: GoogleFonts.jomhuria(
+                    fontSize: 80,
+                    fontWeight: FontWeight.w500,
+                    color: const Color.fromARGB(255, 234, 186, 210),
                   ),
                 ),
-                Container(
-                  width: double.infinity,
-                  decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 249, 234, 242),
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
-                    ),
+              ),
+
+              // New container including Login Now and the form
+              Container(
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  color: Color.fromARGB(
+                      255, 249, 234, 242), // Light pink background
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
                   ),
-                  child: DefaultTextStyle(
-                    style: GoogleFonts.raleway(
-                      fontSize: 15,
-                      color: const Color.fromARGB(255, 255, 255, 255),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(height: 20),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 16),
-                          child: Text(
-                            'Login Now',
-                            style: GoogleFonts.raleway(
-                              fontSize: 25,
-                              color: const Color.fromARGB(255, 181, 88, 139),
-                            ),
+                ),
+                child: DefaultTextStyle(
+                  style: GoogleFonts.raleway(
+                    fontSize: 15,
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 20),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16),
+                        child: Text(
+                          'Login Now',
+                          style: GoogleFonts.raleway(
+                            fontSize: 25,
+                            color: const Color.fromARGB(255, 181, 88, 139),
                           ),
                         ),
-                        const SizedBox(height: 20),
-                        Form(
-                          key: _loginformkey,
+                      ),
+                      const SizedBox(height: 20),
+                      // Form container
+                      Form(
+                        key: _loginformkey,
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            color: Color.fromARGB(
+                                255, 234, 186, 210), // Background color
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20),
+                            ),
+                          ),
                           child: Padding(
                             padding: const EdgeInsets.only(left: 16, right: 16),
                             child: Column(
@@ -148,8 +161,12 @@ class _LoginState extends State<Login> {
                                     if (email == null || email.isEmpty) {
                                       return 'Please enter your email';
                                     }
-                                    if (!email.contains('@') || !email.contains('.')) {
+                                    if (!email.contains('@') ||
+                                        !email.contains('.')) {
                                       return 'Please enter a valid email';
+                                    }
+                                    if (!users.containsKey(email)) {
+                                      return 'This email is not registered';
                                     }
                                     return null;
                                   },
@@ -158,13 +175,16 @@ class _LoginState extends State<Login> {
                                       borderRadius: BorderRadius.circular(25.0),
                                     ),
                                     hintText: 'Enter Email ID',
-                                    hintStyle: GoogleFonts.poppins(color: const Color.fromARGB(255, 123, 123, 123)),
+                                    hintStyle: GoogleFonts.poppins(
+                                        color: const Color.fromARGB(
+                                            255, 123, 123, 123)),
                                     filled: true,
                                     fillColor: Colors.white,
                                     focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(25.0),
                                       borderSide: const BorderSide(
-                                        color: Color.fromARGB(255, 181, 88, 139),
+                                        color:
+                                            Color.fromARGB(255, 181, 88, 139),
                                         width: 2.0,
                                       ),
                                     ),
@@ -175,6 +195,7 @@ class _LoginState extends State<Login> {
                                   ),
                                 ),
                                 const SizedBox(height: 30),
+                                // Password input
                                 const Text('    Password'),
                                 const SizedBox(height: 2),
                                 TextFormField(
@@ -184,6 +205,14 @@ class _LoginState extends State<Login> {
                                     if (password == null || password.isEmpty) {
                                       return 'Please enter your password';
                                     }
+                                    if (users.containsKey(
+                                        _loginemailController.text)) {
+                                      if (users[_loginemailController.text]
+                                              ?['password'] !=
+                                          password) {
+                                        return 'Incorrect password';
+                                      }
+                                    }
                                     return null;
                                   },
                                   decoration: InputDecoration(
@@ -191,20 +220,26 @@ class _LoginState extends State<Login> {
                                       borderRadius: BorderRadius.circular(25.0),
                                     ),
                                     hintText: 'Enter Password',
-                                    hintStyle: GoogleFonts.poppins(color: const Color.fromARGB(255, 103, 102, 103)),
+                                    hintStyle: GoogleFonts.poppins(
+                                        color: const Color.fromARGB(
+                                            255, 103, 102, 103)),
                                     filled: true,
                                     fillColor: Colors.white,
                                     focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(25.0),
                                       borderSide: const BorderSide(
-                                        color: Color.fromARGB(255, 181, 88, 139),
+                                        color:
+                                            Color.fromARGB(255, 181, 88, 139),
                                         width: 2.0,
                                       ),
                                     ),
                                     suffixIcon: IconButton(
                                       icon: Icon(
-                                        isObscurelogin ? Icons.visibility_off : Icons.visibility,
-                                        color: const Color.fromARGB(255, 123, 123, 123),
+                                        isObscurelogin
+                                            ? Icons.visibility_off
+                                            : Icons.visibility,
+                                        color: const Color.fromARGB(
+                                            255, 123, 123, 123),
                                       ),
                                       onPressed: () {
                                         setState(() {
@@ -220,27 +255,33 @@ class _LoginState extends State<Login> {
                                     children: [
                                       GestureDetector(
                                         onTap: () {
-                                          Navigator.pushNamed(context, Changepassword.pageroute);
+                                          Navigator.pushNamed(context,
+                                              Changepassword.pageroute);
                                         },
                                         child: const Text(
                                           'Forgot password?',
                                           style: TextStyle(
-                                            color: Color.fromARGB(255, 255, 255, 255),
+                                            color: Color.fromARGB(
+                                                255, 255, 255, 255),
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
                                       ),
                                       const SizedBox(height: 20),
                                       ElevatedButton(
-                                        onPressed: _login,
+                                        onPressed: () {
+                                          _login();
+                                        },
                                         style: ElevatedButton.styleFrom(
-                                          backgroundColor: const Color.fromARGB(255, 196, 120, 158),
+                                          backgroundColor: const Color.fromARGB(
+                                              255, 196, 120, 158),
                                           minimumSize: const Size(250, 50),
                                           shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(15.0),
+                                            borderRadius: BorderRadius.circular(
+                                                15.0), // Reduce the border radius to 15
                                           ),
                                         ),
-                                        child: _isLoading
+                                       child: _isLoading
                                             ? CircularProgressIndicator()
                                             : Text(
                                                 'Login',
@@ -257,12 +298,15 @@ class _LoginState extends State<Login> {
                                     const Text('You do not have an account? '),
                                     GestureDetector(
                                       onTap: () {
-                                        Navigator.pushNamed(context, Signup.pageroute);
+                                        // Navigating to Signup screen
+                                        Navigator.pushNamed(
+                                            context, Signup.pageroute);
                                       },
                                       child: const Text(
                                         'Signup',
                                         style: TextStyle(
-                                          color: Color.fromARGB(255, 255, 255, 255),
+                                          color: Color.fromARGB(
+                                              255, 255, 255, 255),
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -274,24 +318,25 @@ class _LoginState extends State<Login> {
                             ),
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
-            Positioned(
-              top: 140,
-              right: 10,
-              child: Image.asset(
-                'assets/images/flowers2.png',
-                width: 200,
-                height: 200,
               ),
+            ],
+          ),
+          Positioned(
+            top: 140,
+            right: 10,
+            child: Image.asset(
+              'assets/images/flowers2.png',
+              width: 200,
+              height: 200,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
-    );
+    ));
   }
 }
+
